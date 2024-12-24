@@ -1,0 +1,29 @@
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold mb-4">Ask About Call</h2>
+    <div id="selected-call" class="mb-4 text-gray-600">
+        Select a call to ask questions
+    </div>
+    <div class="space-y-4">
+        <div>
+            <select id="question-template" 
+                    class="w-full p-2 border rounded mb-2">
+                <option value="" disabled selected>Choose a question template...</option>
+                <option value="What were the main pain points discussed?">Pain Points</option>
+                <option value="What next steps were agreed upon?">Next Steps</option>
+                <option value="What objections did the buyer raise?">Objections</option>
+                <option value="What was the buyer's budget or pricing discussion?">Budget/Pricing</option>
+                <option value="What was the timeline discussed?">Timeline</option>
+            </select>
+            <textarea id="question" 
+                      class="w-full p-2 border rounded"
+                      placeholder="Ask a question about the call..."
+                      rows="3"></textarea>
+        </div>
+        <button id="ask-button"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-300"
+                disabled>
+            <i class="fas fa-question-circle mr-2"></i>Ask Question
+        </button>
+        <div id="answer" class="mt-4 p-4 bg-gray-50 rounded hidden"></div>
+    </div>
+</div>

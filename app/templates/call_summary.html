@@ -1,0 +1,26 @@
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold mb-4">Call Summary</h2>
+    <div id="call-summary" class="hidden">
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="bg-gray-50 p-3 rounded">
+                <p class="text-sm text-gray-600">Duration</p>
+                <p class="font-semibold" id="summary-duration"></p>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+                <p class="text-sm text-gray-600">Participants</p>
+                <p class="font-semibold" id="summary-participants"></p>
+            </div>
+        </div>
+        <div class="mb-4">
+            <p class="text-sm text-gray-600 mb-2">Key Topics</p>
+            <div id="summary-keywords" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div>
+            <p class="text-sm text-gray-600 mb-2">AI Summary</p>
+            <p id="summary-text" class="text-sm"></p>
+        </div>
+    </div>
+    <div id="summary-placeholder" class="text-gray-600">
+        Select a call to view summary
+    </div>
+</div>

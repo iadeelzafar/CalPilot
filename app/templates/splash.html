@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to CalPilot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .splash-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+        }
+        
+        .logo-pulse {
+            animation: logoPulse 2s infinite;
+        }
+        
+        @keyframes logoPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 20px rgba(79, 70, 229, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+            }
+        }
+        
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(255, 255, 255, 0.1) 48%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0.1) 52%,
+                transparent 55%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body class="splash-gradient min-h-screen flex items-center justify-center">
+    <div class="text-center animate__animated animate__fadeIn">
+        <div class="mb-8 relative">
+            <div class="logo-pulse shine-effect bg-white rounded-2xl p-8 shadow-xl inline-block">
+                <i class="fas fa-crosshairs text-6xl bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent"></i>
+            </div>
+        </div>
+        <h1 class="text-5xl font-bold text-white mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+            CalPilot
+        </h1>
+        <p class="text-indigo-100 text-xl mb-8 animate__animated animate__fadeInUp animate__delay-2s">
+            Your AI-Powered Call Analysis Platform
+        </p>
+        <a href="/dashboard" 
+           class="inline-block bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 animate__animated animate__fadeInUp animate__delay-3s">
+            Enter Dashboard
+            <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+    </div>
+    
+    <div class="fixed bottom-4 w-full text-center">
+        <p class="text-sm text-indigo-100">
+            Built with <i class="fas fa-heart text-red-300"></i> using Flask & Claude by 
+            <a href="https://adeelzafar.com" target="_blank" rel="noopener" 
+               class="text-white hover:text-indigo-200 font-medium transition-colors">
+                Adeel Zafar
+            </a>
+        </p>
+    </div>
+    
+    <script>
+        // Auto-redirect after 3 seconds if user doesn't click
+        setTimeout(() => {
+            window.location.href = '/dashboard';
+        }, 3000);
+    </script>
+</body>
+</html> 

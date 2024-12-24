@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}CalPilot{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style type="text/css">
+        /* Logo animation */
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+            border-radius: 12px;
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* Animation delays */
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+        
+        /* Dynamic delays for list items */
+        .delay-list-item:nth-child(1) { animation-delay: 0.1s; }
+        .delay-list-item:nth-child(2) { animation-delay: 0.2s; }
+        .delay-list-item:nth-child(3) { animation-delay: 0.3s; }
+        .delay-list-item:nth-child(4) { animation-delay: 0.4s; }
+        .delay-list-item:nth-child(5) { animation-delay: 0.5s; }
+        
+        /* Smooth transitions */
+        .transition-all {
+            transition-duration: 300ms;
+        }
+        
+        /* Gradient animation */
+        .gradient-animate {
+            background: linear-gradient(270deg, #4f46e5, #818cf8);
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Skeleton loading animation */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton 1.5s infinite;
+        }
+        
+        @keyframes skeleton {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #818cf8;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50 animate__animated animate__fadeIn">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center group">
+                    <span class="logo-icon">
+                        <i class="fas fa-crosshairs text-white text-lg"></i>
+                    </span>
+                    <span class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-400 group-hover:from-indigo-500 group-hover:to-indigo-300 transition-all">
+                        CalPilot
+                    </span>
+                </a>
+                <div class="text-sm text-gray-600">
+                    <a href="https://www.adeelzafar.com" target="_blank" class="hover:text-indigo-600 transition-colors">
+                        Developed by Adeel Zafar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="pt-16 min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer class="bg-white shadow-lg mt-8 py-4">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            <p class="text-sm">
+                Built with <i class="fas fa-heart text-red-500"></i> using Flask & Claude by 
+                <a href="https://adeelzafar.com" target="_blank" rel="noopener" 
+                   class="text-indigo-600 hover:text-indigo-500 font-medium transition-colors">
+                    Adeel Zafar
+                </a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/calls.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/questions.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

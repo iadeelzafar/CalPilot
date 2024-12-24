@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}CalPilot - Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 animate__animated animate__fadeIn">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400">
+            Dashboard
+        </h1>
+        <div class="text-gray-600">
+            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                <i class="fas fa-chart-line mr-1"></i>Analytics
+            </span>
+        </div>
+    </div>
+    
+    <!-- Search and Filters -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6 hover-lift">
+        <div class="grid md:grid-cols-4 gap-4">
+            <div class="animate__animated animate__fadeInLeft delay-100">
+                <label class="block text-sm font-medium text-gray-700">Search</label>
+                <div class="relative">
+                    <input type="text" id="search" 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm pl-10 focus:ring-2 focus:ring-indigo-200 transition-all"
+                           placeholder="Search calls...">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+            <div class="animate__animated animate__fadeInLeft delay-200">
+                <label class="block text-sm font-medium text-gray-700">Company</label>
+                <select id="company-filter" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-200 transition-all">
+                    <option value="">All Companies</option>
+                    {% for company in companies %}
+                    <option value="{{ company }}">{{ company|title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="animate__animated animate__fadeInLeft delay-300">
+                <label class="block text-sm font-medium text-gray-700">From Date</label>
+                <input type="date" id="date-from" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-200 transition-all">
+            </div>
+            <div class="animate__animated animate__fadeInLeft delay-400">
+                <label class="block text-sm font-medium text-gray-700">To Date</label>
+                <input type="date" id="date-to" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-200 transition-all">
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+        <!-- Calls List -->
+        <div class="bg-white rounded-lg shadow-lg p-6 hover-lift">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-phone-alt mr-2 text-indigo-500"></i>Recent Calls
+            </h2>
+            <div id="calls-list" class="space-y-4">
+                {% for call in calls %}
+                <div class="border rounded-lg p-4 hover:bg-indigo-50 cursor-pointer call-item transition-all animate__animated animate__fadeIn delay-list-item"
+                     data-call-id="{{ call.id }}">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">{{ call.call_metadata.title }}</h3>
+                            <p class="text-sm text-gray-600">
+                                <i class="far fa-calendar-alt mr-1"></i>{{ call.formatted_date }}
+                                <span class="mx-2">•</span>
+                                <i class="far fa-clock mr-1"></i>{{ call.duration_mins }}
+                            </p>
+                        </div>
+                        <div class="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">
+                            <i class="fas fa-users mr-1"></i>{{ call.call_metadata.parties|length }}
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2 flex items-center gap-2">
+                        <i class="fas fa-building mr-1"></i>
+                        {% for company in call.companies %}
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs hover:bg-gray-200 transition-all">
+                            {{ company|title }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Call Details & Q&A Section -->
+        <div class="space-y-6 animate__animated animate__fadeInRight">
+            {% include "call_summary.html" %}
+            {% include "qa_section.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav_right %}
+<div class="flex items-center space-x-4">
+    <span class="gradient-animate text-white px-3 py-1 rounded-full text-xs">
+        <i class="fas fa-signal mr-1"></i>Live
+    </span>
+</div>
+{% endblock %}

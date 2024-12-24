@@ -1,0 +1,17 @@
+# Core dependencies
+Flask==2.3.3
+Werkzeug==2.3.7
+python-dotenv==1.0.0
+gunicorn==21.2.0
+
+# API Integration
+anthropic==0.42.0
+google-cloud-storage==2.13.0
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+
+# Development tools
+black==23.11.0  # Code formatting
+flake8==6.1.0   # Linting

@@ -1,0 +1,30 @@
+# Environment variables and secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Development/IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Local data
+data/*.json
+logs/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Production
+*.log
